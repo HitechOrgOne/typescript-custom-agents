@@ -1,0 +1,1 @@
+User can log in with a valid username and password.

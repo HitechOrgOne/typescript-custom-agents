@@ -1,9 +1,12 @@
+import { Agent } from "./types/agent.js";
 import { AGENTS } from "./agents/registry.js";
+import { readFile } from "./tools/file_tool.js";
 
 export async function run(
-  agent: keyof typeof AGENTS,
-  requirement: string
+  agent: Agent,
+  requirementFile: string
 ): Promise<string> {
-  const selectedAgent = AGENTS[agent];
-  return selectedAgent(requirement);
+  const requirement = readFile(requirementFile);
+
+  return AGENTS[agent](requirement);
 }

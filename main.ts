@@ -1,12 +1,13 @@
 import { run } from "./orchestrator.js";
+import { Agent } from "./types/agent.js";
 
 async function main(): Promise<void> {
-  const requirement =
-    "User can log in with valid username and password.";
+  const response = await run(
+    Agent.TESTCASE,
+    "./requirements/login.txt"
+  );
 
-  console.log(await run("testcase", requirement));
-
- console.log(await run("playwright", requirement));
+  console.log(response);
 }
 
 main();
