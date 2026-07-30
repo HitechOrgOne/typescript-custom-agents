@@ -7,7 +7,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "tsx main.ts"
+    "start": "tsx main.ts",
+    "testcase": "tsx main_testcase.ts",
+    "playwright": "tsx main_playwright.ts"
   },
   "devDependencies": {
     "@types/node": "^26.1.2",

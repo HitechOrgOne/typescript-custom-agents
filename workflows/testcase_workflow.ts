@@ -1,7 +1,7 @@
 import { Agent } from "../types/agent.js";
 import { Orchestrator } from "../orchestrator.js";
 
-export class QAWorkflow {
+export class TestcaseWorkflow {
   constructor(
     private readonly orchestrator: Orchestrator
   ) {}
@@ -10,12 +10,10 @@ export class QAWorkflow {
     requirementFile: string
   ): Promise<string> {
 
-    // Read requirement
     const requirement = this.orchestrator.readRequirement(
       requirementFile
     );
 
-    // Generate manual test cases
     const testCases = await this.orchestrator.run(
       Agent.TESTCASE,
       requirement
@@ -26,17 +24,6 @@ export class QAWorkflow {
       testCases
     );
 
-    // Generate Playwright code
-    const playwrightCode = await this.orchestrator.run(
-      Agent.PLAYWRIGHT,
-      testCases
-    );
-
-    this.orchestrator.writeFile(
-      "./output/login.spec.ts",
-      playwrightCode
-    );
-
-    return playwrightCode;
+    return testCases;
   }
 }

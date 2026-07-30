@@ -1,0 +1,7 @@
+**Positive Test Cases**  
+1. Enter valid username/password → Redirect to dashboard.  
+2. Valid credentials input → Login successful, home page displayed.  
+
+**Negative Test Cases**  
+1. Invalid password entered → Error: "Invalid credentials."  
+2. Non-existent username used → Error: "User not found."

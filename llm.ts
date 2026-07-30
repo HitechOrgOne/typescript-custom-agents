@@ -5,6 +5,7 @@ const config = new AppConfig();
 const client = new OpenAI({
   baseURL: config.ollamaBaseUrl,
   apiKey: "ollama",
+  timeout: 300000
 });
 
 export async function ask(

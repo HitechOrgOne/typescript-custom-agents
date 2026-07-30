@@ -25,4 +25,11 @@ export class Orchestrator {
   ): string {
     return this.tools.file.read(requirementFile);
   }
+
+  writeFile(
+    filePath: string,
+    content: string
+  ): void {
+    this.tools.file.write(filePath, content);
+  }
 }

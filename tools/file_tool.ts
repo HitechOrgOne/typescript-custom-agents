@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { BaseTool } from "./base_tool.js";
 
 export class FileTool extends BaseTool {
@@ -8,5 +8,9 @@ export class FileTool extends BaseTool {
 
   read(filePath: string): string {
     return readFileSync(filePath, "utf-8");
+  }
+
+  write(filePath: string, content: string): void {
+    writeFileSync(filePath, content, "utf-8");
   }
 }
