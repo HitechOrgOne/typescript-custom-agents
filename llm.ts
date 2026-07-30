@@ -1,7 +1,9 @@
 import OpenAI from "openai";
+import { AppConfig } from "./config/app_config.js";
 
+const config = new AppConfig();
 const client = new OpenAI({
-  baseURL: "http://localhost:11434/v1",
+  baseURL: config.ollamaBaseUrl,
   apiKey: "ollama",
 });
 
@@ -9,11 +11,10 @@ export async function ask(
   systemPrompt: string,
   userPrompt: string
 ): Promise<string> {
-
   console.log("Before API call");
 
   const response = await client.chat.completions.create({
-    model: "qwen3:8b",
+    model: config.model,
     messages: [
       {
         role: "system",

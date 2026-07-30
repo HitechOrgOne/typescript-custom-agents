@@ -1,8 +1,10 @@
 import { readFileSync } from "node:fs";
-import { ITool } from "../interfaces/tool.js";
+import { BaseTool } from "./base_tool.js";
 
-export class FileTool implements ITool {
-  readonly name = "file";
+export class FileTool extends BaseTool {
+  constructor() {
+    super("file");
+  }
 
   read(filePath: string): string {
     return readFileSync(filePath, "utf-8");

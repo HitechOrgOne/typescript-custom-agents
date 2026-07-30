@@ -1,18 +1,24 @@
 import { Agent } from "./types/agent.js";
 import { createAgents } from "./agents/registry.js";
 import { LLMService } from "./services/llm_service.js";
-import { FileTool } from "./tools/file_tool.js";
+import { ToolRegistry } from "./tools/tool_registry.js";
 
-const llm = new LLMService();
-const fileTool = new FileTool();
+export class Orchestrator {
+  private readonly agents;
 
-const agents = createAgents(llm);
+  constructor(
+    private readonly tools: ToolRegistry,
+    private readonly llm: LLMService
+  ) {
+    this.agents = createAgents(llm);
+  }
 
-export async function run(
-  agent: Agent,
-  requirementFile: string
-): Promise<string> {
-  const requirement = fileTool.read(requirementFile);
+  async run(
+    agent: Agent,
+    requirementFile: string
+  ): Promise<string> {
+    const requirement = this.tools.file.read(requirementFile);
 
-  return agents[agent].execute(requirement);
+    return this.agents[agent].execute(requirement);
+  }
 }
