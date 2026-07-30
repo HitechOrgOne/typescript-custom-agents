@@ -1,11 +1,12 @@
+import { BaseAgent } from "./base_agent.js";
 import { ILLMService } from "../interfaces/llm.js";
-import { loadPrompt } from "../utils/prompt_loader.js";
 
-export async function generateTestCases(
-  llm: ILLMService,
-  requirement: string
-): Promise<string> {
-  const systemPrompt = loadPrompt("testcase_agent.md");
+export class TestcaseAgent extends BaseAgent {
+  constructor(llm: ILLMService) {
+    super(llm, "testcase_agent.md");
+  }
 
-  return llm.generate(systemPrompt, requirement);
+  async execute(requirement: string): Promise<string> {
+    return this.ask(requirement);
+  }
 }

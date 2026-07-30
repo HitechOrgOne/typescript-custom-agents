@@ -1,14 +1,17 @@
 import { Agent } from "../types/agent.js";
 import { ILLMService } from "../interfaces/llm.js";
-import { generateTestCases } from "./testcase_agent.js";
-import { generatePlaywrightTest } from "./playwright_agent.js";
+import { TestcaseAgent } from "./testcase_agent.js";
+import { PlaywrightAgent } from "./playwright_agent.js";
 
-export type AgentFunction = (
-  llm: ILLMService,
-  requirement: string
-) => Promise<string>;
+export interface IAgent {
+  execute(requirement: string): Promise<string>;
+}
 
-export const AGENTS: Record<Agent, AgentFunction> = {
-  [Agent.TESTCASE]: generateTestCases,
-  [Agent.PLAYWRIGHT]: generatePlaywrightTest,
-};
+export function createAgents(
+  llm: ILLMService
+): Record<Agent, IAgent> {
+  return {
+    [Agent.TESTCASE]: new TestcaseAgent(llm),
+    [Agent.PLAYWRIGHT]: new PlaywrightAgent(llm),
+  };
+}

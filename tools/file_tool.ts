@@ -1,5 +1,10 @@
 import { readFileSync } from "node:fs";
+import { ITool } from "../interfaces/tool.js";
 
-export function readFile(filePath: string): string {
-  return readFileSync(filePath, "utf-8");
+export class FileTool implements ITool {
+  readonly name = "file";
+
+  read(filePath: string): string {
+    return readFileSync(filePath, "utf-8");
+  }
 }
