@@ -1,7 +1,7 @@
-import { Agent } from "./types/agent.js";
 import { Orchestrator } from "./orchestrator.js";
-import { LLMService } from "./services/llm_service.js";
+import { Agent } from "./types/agent.js";
 import { ToolRegistry } from "./tools/tool_registry.js";
+import { LLMService } from "./services/llm_service.js";
 
 async function main(): Promise<void> {
   const orchestrator = new Orchestrator(
@@ -9,9 +9,13 @@ async function main(): Promise<void> {
     new LLMService()
   );
 
+  const requirement = orchestrator.readRequirement(
+    "./requirements/login.txt"
+  );
+
   const response = await orchestrator.run(
     Agent.TESTCASE,
-    "./requirements/login.txt"
+    requirement
   );
 
   console.log(response);

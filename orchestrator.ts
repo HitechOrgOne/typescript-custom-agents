@@ -15,10 +15,14 @@ export class Orchestrator {
 
   async run(
     agent: Agent,
-    requirementFile: string
+    input: string
   ): Promise<string> {
-    const requirement = this.tools.file.read(requirementFile);
+    return this.agents[agent].execute(input);
+  }
 
-    return this.agents[agent].execute(requirement);
+  readRequirement(
+    requirementFile: string
+  ): string {
+    return this.tools.file.read(requirementFile);
   }
 }
