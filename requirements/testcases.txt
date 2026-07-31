@@ -1,7 +1,7 @@
-**Positive Test Cases**  
-1. Enter valid username/password → Redirect to dashboard.  
-2. Valid credentials input → Login successful, home page displayed.  
+**Positive Test Cases:**  
+1. Enter valid username. Enter valid password. Click login. (Expected: Login successful)  
+2. Enter valid username. Enter valid password with trailing whitespace. Click login. (Expected: Login successful)  
 
-**Negative Test Cases**  
-1. Invalid password entered → Error: "Invalid credentials."  
-2. Non-existent username used → Error: "User not found."
+**Negative Test Cases:**  
+1. Enter invalid username. Enter valid password. Click login. (Expected: Login failure)  
+2. Enter valid username. Enter invalid password. Click login. (Expected: Login failure)
