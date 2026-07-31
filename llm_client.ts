@@ -1,14 +1,13 @@
+import { env } from "./config/env.js"
 import OpenAI from "openai";
-import { AppConfig } from "./config/app_config.js";
 
 export class LLMClient {
   private readonly client: OpenAI;
-  private readonly config = new AppConfig();
-
+  
   constructor() {
     this.client = new OpenAI({
-      baseURL: this.config.ollamaBaseUrl,
-      apiKey: "ollama",
+      baseURL: env.baseUrl,
+      apiKey:  env.apiKey,
     });
   }
 
@@ -19,7 +18,7 @@ export class LLMClient {
     console.log("Before API call");
 
     const response = await this.client.chat.completions.create({
-      model: this.config.model,
+      model:  env.model,
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },

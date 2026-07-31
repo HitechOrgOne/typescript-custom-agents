@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { QAWorkflow } from "./workflows/qa_workflow.js";
 import { Orchestrator } from "./orchestrator.js";
 import { ToolRegistry } from "./tools/tool_registry.js";

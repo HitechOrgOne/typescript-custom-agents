@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { ToolRegistry } from "./tools/tool_registry.js";
 import { LLMService } from "./services/llm_service.js";
 import { Orchestrator } from "./orchestrator.js";
