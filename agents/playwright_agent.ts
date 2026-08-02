@@ -1,5 +1,6 @@
 import { BaseAgent } from "./base_agent.js";
 import { ILLMService } from "../interfaces/llm.js";
+import { PROMPTS } from "../constants/prompts.js";
 
 export class PlaywrightAgent extends BaseAgent {
 
@@ -9,7 +10,7 @@ export class PlaywrightAgent extends BaseAgent {
 
     super(
       llm,
-      "playwright_agent.md"
+      PROMPTS.PLAYWRIGHT,
     );
 
   }

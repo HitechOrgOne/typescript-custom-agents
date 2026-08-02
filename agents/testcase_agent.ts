@@ -1,5 +1,7 @@
 import { BaseAgent } from "./base_agent.js";
 import { ILLMService } from "../interfaces/llm.js";
+import { PROMPTS } from "../constants/prompts.js";
+
 
 export class TestcaseAgent extends BaseAgent {
 
@@ -9,7 +11,7 @@ export class TestcaseAgent extends BaseAgent {
 
     super(
       llm,
-      "testcase_agent.md"
+      PROMPTS.TESTCASE
     );
 
   }
