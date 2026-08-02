@@ -1,13 +1,13 @@
-import { env } from "./config/env.js"
 import OpenAI from "openai";
+import { ILLMService } from "../interfaces/llm.js";
 
-export class LLMClient {
+export class OpenAIClient implements ILLMService {
+
   private readonly client: OpenAI;
-  
+
   constructor() {
     this.client = new OpenAI({
-      baseURL: env.baseUrl,
-      apiKey:  env.apiKey,
+      apiKey: process.env.OPENAI_API_KEY
     });
   }
 
@@ -15,18 +15,23 @@ export class LLMClient {
     systemPrompt: string,
     userPrompt: string
   ): Promise<string> {
-    console.log("Before API call");
 
     const response = await this.client.chat.completions.create({
-      model:  env.model,
+      model: process.env.LLM_MODEL,
       messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt },
-      ],
+        {
+          role: "system",
+          content: systemPrompt
+        },
+        {
+          role: "user",
+          content: userPrompt
+        }
+      ]
     });
 
-    console.log("After API call");
-
     return response.choices[0].message.content ?? "";
+
   }
+
 }

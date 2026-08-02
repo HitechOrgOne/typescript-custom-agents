@@ -1,22 +1,21 @@
 export class MCPTool {
 
-  async callTool(
-    server: string,
-    tool: string,
-    arguments_: Record<string, unknown>
-  ): Promise<string> {
+    private server = "";
 
-    console.log("========== MCP TOOL ==========");
-    console.log("Server :", server);
-    console.log("Tool   :", tool);
-    console.log("Args   :", arguments_);
+    connect(server: string): void {
+        this.server = server;
+    }
 
-    // Future:
-    // Connect to MCP Server
-    // Send tool request
-    // Receive tool response
+    async callTool(
+        tool: string,
+        args: Record<string, unknown>
+    ): Promise<string> {
 
-    return "MCP tool executed successfully.";
-  }
+        console.log("Server:", this.server);
+        console.log("Tool:", tool);
+        console.log("Arguments:", args);
+
+        return "Not implemented";
+    }
 
 }
