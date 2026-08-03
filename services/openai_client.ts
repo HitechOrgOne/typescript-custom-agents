@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { ILLMService } from "../interfaces/llm.js";
+import { ILLMService } from "../interfaces/illm.js";
 
 export class OpenAIClient implements ILLMService {
 

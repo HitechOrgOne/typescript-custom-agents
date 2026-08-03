@@ -1,5 +1,5 @@
 import { Agent } from "../types/agent.js";
-import { ILLMService } from "../interfaces/llm.js";
+import { ILLMService } from "../interfaces/illm.js";
 
 import { TestcaseAgent } from "./testcase_agent.js";
 import { PlaywrightAgent } from "./playwright_agent.js";

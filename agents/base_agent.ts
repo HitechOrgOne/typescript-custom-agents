@@ -1,4 +1,4 @@
-import { ILLMService } from "../interfaces/llm.js";
+import { ILLMService } from "../interfaces/illm.js";
 import { loadPrompt } from "../utils/prompt_loader.js";
 
 export abstract class BaseAgent {
