@@ -1,19 +1,36 @@
-import { BaseAgent } from "./base_agent.js";
-import { ILLMService } from "../interfaces/illm.js";
-import { PROMPTS } from "../constants/prompts.js";
+import { Agent } from "../types/agent.js"
+import { Orchestrator } from "../orchestrator.js";
+import { ToolRegistry } from "../tools/tool_registry.js";
+import { LLMService } from "../services/llm_service.js";
+import { OpenAIClient } from "../services/openai_client.js";
 
+async function main(): Promise<void> {
 
-export class TestcaseAgent extends BaseAgent {
+  const llm = new LLMService(
+    new OpenAIClient()
+  );
 
-  constructor(
-    llm: ILLMService
-  ) {
+  const orchestrator = new Orchestrator(
+    new ToolRegistry(),
+    llm
+  );
 
-    super(
-      llm,
-      PROMPTS.TESTCASE
-    );
+  const requirement = orchestrator.readRequirement(
+    "./requirements/login.txt"
+  );
 
-  }
+  const response = await orchestrator.run(
+    Agent.TESTCASE,
+    requirement
+  );
+
+  orchestrator.writeFile(
+    "./requirements/testcases.txt",
+    response
+  );
+
+  console.log(response);
 
 }
+
+main();
