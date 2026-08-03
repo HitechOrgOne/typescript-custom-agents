@@ -1,5 +1,7 @@
+import { MCPToolInfo } from "../mcp/mcp_tool_info.js";
+
 export interface IMCPServerTool {
-  readonly name: string;
+readonly info: MCPToolInfo;
 
 execute(
     arguments_: Record<string, unknown>

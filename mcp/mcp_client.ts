@@ -5,7 +5,6 @@ export class MCPClient implements IMCPClient {
 
   private connected = false;
   private serverName = "";
-
   private readonly server = new MockMCPServer();
 
   async connect(serverName: string): Promise<void> 
@@ -29,11 +28,8 @@ export class MCPClient implements IMCPClient {
     return this.server.listTools();
   }
 
-  async callTool(
-    toolName: string,
-    arguments_: Record<string, unknown>
-  ): Promise<unknown> {
-
+  async callTool(toolName: string,arguments_: Record<string, unknown>)
+  {
     if (!this.connected) {
       throw new Error(
         "Not connected to MCP Server."

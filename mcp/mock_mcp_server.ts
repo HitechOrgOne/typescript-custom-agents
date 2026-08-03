@@ -1,6 +1,6 @@
 import { IMCPServerTool } from "../interfaces/imcp_server_tool.js";
 import { FileTool } from "../tools/file_tool.js";
-import { FileMCPTool } from "./tools/file_mcp_tool.js";
+import { FileMCPTool } from "../tools/file_mcp_tool.js";
 
 export class MockMCPServer {
 
@@ -19,12 +19,10 @@ export class MockMCPServer {
 
   }
 
-  private register(
-    tool: IMCPServerTool
-  ): void {
-
+  private register(tool: IMCPServerTool): void 
+  {
     this.tools.set(
-      tool.name,
+      tool.info.name,
       tool
     );
 

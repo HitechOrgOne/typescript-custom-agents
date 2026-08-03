@@ -5,6 +5,11 @@ export class FileMCPTool implements IMCPServerTool {
 
   readonly name = "file";
 
+  readonly info = {
+    name: "file",
+    description: "Read and write local files."
+};
+
   constructor(
     private readonly fileTool: FileTool
   ) {}
