@@ -1,36 +1,15 @@
-import { Agent } from "../types/agent.js"
-import { Orchestrator } from "../orchestrator.js";
-import { ToolRegistry } from "../tools/tool_registry.js";
-import { LLMService } from "../services/llm_service.js";
-import { OpenAIClient } from "../services/openai_client.js";
+import { BaseAgent } from "./base_agent.js";
+import { ILLMService } from "../interfaces/illm.js";
 
-async function main(): Promise<void> {
+export class PlaywrightAgent extends BaseAgent {
 
-  const llm = new LLMService(
-    new OpenAIClient()
-  );
-
-  const orchestrator = new Orchestrator(
-    new ToolRegistry(),
-    llm
-  );
-
-  const testCases = orchestrator.readRequirement(
-    "./requirements/testcases.txt"
-  );
-
-  const response = await orchestrator.run(
-    Agent.PLAYWRIGHT,
-    testCases
-  );
-
-  orchestrator.writeFile(
-    "./output/login.spec.ts",
-    response
-  );
-
-  console.log(response);
+  constructor(
+    llm: ILLMService
+  ) {
+    super(
+      llm,
+      "playwright_agent.md"
+    );
+  }
 
 }
-
-main();
