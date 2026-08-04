@@ -1,5 +1,5 @@
 import { Agent } from "./types/agent.js";
-import { createAgents } from "./agents/registry.js";
+import { createAgents } from "./agents/agent_registry.js";
 import { ToolRegistry } from "./tools/tool_registry.js";
 import { LLMService } from "./services/llm_service.js";
 

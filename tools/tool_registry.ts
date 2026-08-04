@@ -1,7 +1,7 @@
 import { FileTool } from "./file_tool.js";
 // import { JiraTool } from "./jira_tool.js";
 // import { DatabaseTool } from "./database_tool.js";
-import { MCPTool } from "./mcp_tool.js";
+import { MCPTool } from "./tools/mcp_tool.js";
 
 export class ToolRegistry {
 
