@@ -5,12 +5,12 @@ const config = new AppConfig();
 const client = new OpenAI({
   baseURL: config.ollamaBaseUrl,
   apiKey: "ollama",
-  timeout: 300000
+  timeout: 300000,
 });
 
 export async function ask(
   systemPrompt: string,
-  userPrompt: string
+  userPrompt: string,
 ): Promise<string> {
   console.log("Before API call");
 

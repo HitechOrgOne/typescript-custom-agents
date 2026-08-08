@@ -1,58 +1,38 @@
-// export enum Agent{
-//     PW="pw",
-//     MANUAL="manual"
+// import fs from "node:fs"
+// import { parse } from "csv-parse/sync";
+// const csvContent = fs.readFileSync("./users.csv","utf8")
+// const records = parse(csvContent, {
+//     columns: true,
+//     skip_empty_lines: true
+// });
+
+// for(let record of records){
+// console.log(record instanceof Set )
+// console.log(record  )
 // }
 
-// export class LLM{
-//     generate(prompt: string) : string{
-// return `llm response for prompt ${prompt}`
-//     }
+// type Tools = {
+// name:string
+// description:string
+// }
+// interface AllTools {
+// state: string
+// }
+// const tools=new Map<string,Tools>()
+// tools.set("Jira",{name:"Jira Tool",description:"This is jira"})
+// tools.set("DB",{name:"DB Tool",description:"This is DB"})
+// const va=[...tools.values()].map( val => val.name)
+// for(let singleval of va )
+// {
+//     console.log(singleval)
 // }
 
-// //testcase agent.ts
-// // import { llm } from '../llm.ts'
-// export class TestCaseAgent{
+// function mf(...args){
+//     args.forEach(   item => console.log(item))
+//      }
 
-//     // constructor with llm as parameter
-//     constructor(private readonly llm: LLM){}
+// mf(1,2,3)
 
-//     // function with input as parameter
-//     execute(input: string): string{
-//         return this.llm.generate(input)
-//     }
-// }
-
-// // registry.ts
-//   export function  createAgents(llm:LLM){
-//     return{
-//         [Agent.MANUAL]: new TestCaseAgent(llm)
-//     }
-//   }
-
-//   // orchestrator.ts
-//   export class Orchestrator
-//   {
-//     private readonly agents;
-//     constructor(private readonly llm: LLM ){
-//     this.agents = createAgents(this.llm) 
-//     } 
-// }
-   
-  
-// 1. Define a standard JavaScript object
-type user = {
-  id: number
-  name: string
-  isAdmin: boolean
-};
-
-const uobj: user = {
-  id: 1,
-  name: "string",
-  isAdmin: true
-};
-
-console.log(Object.entries(uobj).length)
-export class  A1{
-constructor(private instancevar: number){}
-} 
+const l1 = [1, 2, 3];
+const l2 = l1.reduce((accumulator, current) => accumulator + current, 2);
+console.log(l2);

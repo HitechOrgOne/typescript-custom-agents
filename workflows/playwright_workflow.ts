@@ -2,27 +2,17 @@ import { Agent } from "../types/agent.js";
 import { Orchestrator } from "../orchestrator.js";
 
 export class PlaywrightWorkflow {
-  constructor(
-    private readonly orchestrator: Orchestrator
-  ) {}
+  constructor(private readonly orchestrator: Orchestrator) {}
 
-  async execute(
-    testcaseFile: string
-  ): Promise<string> {
-
-    const testCases = this.orchestrator.readRequirement(
-      testcaseFile
-    );
+  async execute(testcaseFile: string): Promise<string> {
+    const testCases = this.orchestrator.readRequirement(testcaseFile);
 
     const playwrightCode = await this.orchestrator.run(
       Agent.PLAYWRIGHT,
-      testCases
+      testCases,
     );
 
-    this.orchestrator.writeFile(
-      "./output/login.spec.ts",
-      playwrightCode
-    );
+    this.orchestrator.writeFile("./output/login.spec.ts", playwrightCode);
 
     return playwrightCode;
   }

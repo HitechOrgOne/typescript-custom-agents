@@ -4,7 +4,6 @@ import { FileTool } from "./file_tool.js";
 import { MCPTool } from "./tools/mcp_tool.js";
 
 export class ToolRegistry {
-
   readonly file = new FileTool();
 
   // readonly jira = new JiraTool();
@@ -12,5 +11,4 @@ export class ToolRegistry {
   // readonly database = new DatabaseTool();
 
   readonly mcp = new MCPTool();
-
 }

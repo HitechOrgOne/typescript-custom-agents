@@ -8,15 +8,17 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx main.ts",
-    "testcase": "tsx main_testcase.ts",
-    "playwright": "tsx main_playwright.ts"
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@types/node": "^26.1.2",
+    "prettier": "^3.9.6",
     "tsx": "^4.23.1",
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "csv-parse": "^7.0.2",
     "dotenv": "^17.4.2",
     "openai": "^7.0.0"
   }

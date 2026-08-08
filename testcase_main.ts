@@ -8,26 +8,17 @@ import { TestcaseWorkflow } from "./workflows/testcase_workflow.js";
 import { MCPClient } from "./mcp/mcp_client.js";
 
 async function main(): Promise<void> {
-
   // ===== Test MCP =====
 
   const mcp = new MCPClient();
+  await mcp.connect("Local Mock Server");
 
-  await mcp.connect(
-    "Local Mock Server"
-  );
+  console.log(await mcp.listTools());
 
-  console.log(
-    await mcp.listTools()
-  );
-
-  const content = await mcp.callTool(
-    "file",
-    {
-      operation: "read",
-      path: "./requirements/login.txt"
-    }
-  );
+  const content = await mcp.callTool("file", {
+    operation: "read",
+    path: "./requirements/login.txt",
+  });
 
   console.log(content);
 
@@ -35,25 +26,15 @@ async function main(): Promise<void> {
 
   // ===== Run Testcase Workflow =====
 
-  const llm = new LLMService(
-    new OpenAIClient()
-  );
+  const llm = new LLMService(new OpenAIClient());
 
-  const orchestrator = new Orchestrator(
-    new ToolRegistry(),
-    llm
-  );
+  const orchestrator = new Orchestrator(new ToolRegistry(), llm);
 
-  const workflow = new TestcaseWorkflow(
-    orchestrator
-  );
+  const workflow = new TestcaseWorkflow(orchestrator);
 
-  const result = await workflow.execute(
-    "./requirements/login.txt"
-  );
+  const result = await workflow.execute("./requirements/login.txt");
 
   console.log(result);
-
 }
 
 main();

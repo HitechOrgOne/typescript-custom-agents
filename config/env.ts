@@ -4,5 +4,5 @@ export const env = {
   model: process.env.LLM_MODEL!,
   timeout: Number(process.env.LLM_TIMEOUT),
   temperature: Number(process.env.LLM_TEMPERATURE),
-  outputDir: process.env.OUTPUT_DIR!
+  outputDir: process.env.OUTPUT_DIR!,
 };

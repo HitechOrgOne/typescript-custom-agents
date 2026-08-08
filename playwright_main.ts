@@ -5,19 +5,11 @@ import { Orchestrator } from "./orchestrator.js";
 import { PlaywrightWorkflow } from "./workflows/playwright_workflow.js";
 
 async function main(): Promise<void> {
+  const orchestrator = new Orchestrator(new ToolRegistry(), new LLMService());
 
-  const orchestrator = new Orchestrator(
-    new ToolRegistry(),
-    new LLMService()
-  );
+  const workflow = new PlaywrightWorkflow(orchestrator);
 
-  const workflow = new PlaywrightWorkflow(
-    orchestrator
-  );
-
-  const result = await workflow.execute(
-    "./requirements/testcases.txt"
-  );
+  const result = await workflow.execute("./requirements/testcases.txt");
 
   console.log(result);
 }
